@@ -1,32 +1,11 @@
-// fonts
-$Montserrat400: 'Montserrat400', Arial, Helvetica, sans-serif;
-$Montserrat500: 'Montserrat500', Arial, Helvetica, sans-serif;
-$Montserrat600: 'Montserrat600', Arial, Helvetica, sans-serif;
-$Montserrat800: 'Montserrat800', Arial, Helvetica, sans-serif;
-$Montserrat900: 'Montserrat900', Arial, Helvetica, sans-serif;
-$HelveticaNeue500: 'HelveticaNeue500', Arial, Helvetica, sans-serif;
-$Inter400: 'Inter', Arial, Helvetica, sans-serif;
-$Inter500: 'Inter500', Arial, Helvetica, sans-serif;
-$Inter600: 'Inter600', Arial, Helvetica, sans-serif;
-$Inter700: 'Inter700', Arial, Helvetica, sans-serif;
-$Inter800: 'Inter800', Arial, Helvetica, sans-serif;
-// fonts
-
+$font-family: 'Roboto', sans-serif;
+$font-family: sans-serif;
 // colors
-$greyColor: #42434B;
-$darkGreyColor: #505761;
-$darkGrey: #737373;
-$lightBalckColor: #2A2B31;
-$smokeColor: #F1F1F1;
-$redColor: #FF594F;
-$yellowColor: #FFB831;
-$black: #171717;
-$white: #ffffff;
-$smoke: #F8F9FD;
-$lightGray: #A9A9A9;
-$brown: #B2947B;
-$green: #2C6D47;
-// colors
+$color-background: rgba(153, 236, 248, 0.8);
+$color-black: #000000;
+$color-warning: rgba(255, 0, 0, 0.51);
+$color-primary: #6ed3bc;
+$color-primary-dark: rgba(110, 211, 188, 0.55);
 
 // desctop sizes
 $desctop1px: 0.072vw;

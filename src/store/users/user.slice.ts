@@ -1,51 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit';
-import {} from '../../../types/models';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {IUser} from "models/user";
+import {initialUsers} from "utils/constants";
 
-const initialState = {
-  isUserInRoom: false,
-  isUserRoomCreator: false,
-  roomDetails: null,
-  activeRooms: [],
-  localStream: null,
-  remoteStreams: [],
-  audioOnly: localStorage.getItem('audioOnly') === 'true',
-  screenSharingStream: null,
-  isScreenSharingActive: false,
-  isUserJoinedWithOnlyAudio: false,
+interface IUserState {
+    users: IUser[];
+}
+
+const initialState: IUserState = {
+    users: initialUsers,
 };
-export const roomSlice = createSlice({
-  name: 'room',
-  initialState,
-  reducers: {
-    setOpenRoom: (state, action) => {
-      state.isUserInRoom = action.payload.isUserInRoom;
-      state.isUserRoomCreator = action.payload.isUserRoomCreator;
+export const userSlice = createSlice({
+    name: 'users',
+    initialState,
+    reducers: {
+        addUser: (state, action:PayloadAction<IUser>) => {
+            state.users.push(action.payload);
+        },
+        removeUser: (state, action:PayloadAction<string>) => {
+            state.users = state.users.filter(user => user.id !== action.payload);
+        },
+        updateUser: (state, action:PayloadAction<IUser>) => {
+            state.users = state.users.map(user => user.id === action.payload.id ? action.payload : user);
+        }
+
     },
-    setRoomDetails: (state, action) => {
-      state.roomDetails = action.payload;
-    },
-    setActiveRooms: (state, action) => {
-      state.activeRooms = action.payload;
-    },
-    setLocalStream: (state, action) => {
-      state.localStream = action.payload;
-    },
-    setRemoteStreams: (state, action) => {
-      state.remoteStreams = action.payload;
-    },
-    setAudioOnly: (state, action) => {
-      localStorage.setItem('audioOnly', action.payload);
-      state.audioOnly = action.payload;
-    },
-    setScreenSharingStream: (state, action) => {
-      state.screenSharingStream = action.payload.stream || null;
-      state.isScreenSharingActive = !!action.payload.stream;
-    },
-    setUserJoinedWithOnlyAudio: (state, action) => {
-      state.isUserJoinedWithOnlyAudio = action.payload;
-    },
-  },
 });
 
-export const roomActions = roomSlice.actions;
-export const roomReducer = roomSlice.reducer;
+export const usersActions = userSlice.actions;
+export const usersReducer = userSlice.reducer;

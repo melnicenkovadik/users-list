@@ -1,0 +1,12 @@
+.add-user {
+  color: $color-black;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .text-error{
+    color: $color-warning;
+  }
+}

@@ -1,15 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from '@reduxjs/toolkit';
-import { authActions } from '../store/auth/auth.slice';
-import { friendsActions } from '../store/friends/friends.slice';
-import { chatActions } from '../store/chat/chat.slice';
-import { roomActions } from '../store/room/room.slice';
+import { usersActions } from 'store/users/user.slice';
 
 const actionCreators = {
-  ...authActions,
-  ...friendsActions,
-  ...chatActions,
-  ...roomActions,
+  ...usersActions,
 };
 export const useActions = () => {
   const dispatch = useDispatch();

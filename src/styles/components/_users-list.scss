@@ -1,14 +1,124 @@
-button{
-    background-color: $color-primary;
-    color: $color-white;
-    border: none;
+.users-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  padding: 0;
+  margin: 20px 0 0 0;
+  gap: 15px;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    gap: 15px;
     border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    &:hover{
-        background-color: $color-primary-dark;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
+
+    .user__actions {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100%;
+      margin: 20px;
+      gap: 15px;
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+
+      .user__action {
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        margin: 0;
+        border-radius: 50%;
+        background-color: #fff;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+
+    .user__info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      height: 100%;
+      padding: 10px;
+      margin: 0;
+      gap: 5px;
+      width: 100%;
+
+      &--content {
+        gap: 5px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        @media (max-width: 768px) {
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+        }
+
+        .item {
+          width: 100%;
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: #333;
+        }
+
+        .is-edit {
+          width: 100%;
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: #333;
+          border-radius: 5px;
+          outline: none;
+          animation: isEdit 1.4s infinite;
+        }
+
+        input {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+@keyframes isEdit {
+  0% {
+    color: #fff;
+  }
+  50% {
+    color: #f1f1f1;
+  }
+  100% {
+    color: #fff;
+  }
 }

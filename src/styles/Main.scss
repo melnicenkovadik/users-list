@@ -1,8 +1,4 @@
 @import "./utilites/variables";
-
-// Mixins
-
-@import "./utilites/icons";
 @import "./utilites/base";
 
 // Fonts
@@ -10,12 +6,7 @@
 
 // Layout
 @import "./layout/layout";
-@import "./layout/header";
-@import "./layout/footer";
 
 // components
+@import "./components";
 
-
-//pages
-@import "./pages/home";
-@import "./pages/about";

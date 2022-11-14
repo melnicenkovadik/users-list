@@ -1,8 +1,10 @@
 import {Field, Form, Formik} from "formik";
 import uniqid from "uniqid";
 import React from "react";
-import {useActions} from "../hooks/actions";
+import {useActions} from "../../hooks/actions";
 import * as Yup from "yup";
+import {useToast} from "../../hooks/use-toast";
+import {useAppSelector} from "../../hooks/redux";
 
 const UserSchema = Yup.object().shape({
     email: Yup.string().email('Невірний формат емейлу').required('Обовязкове поле'),
@@ -12,6 +14,8 @@ const UserSchema = Yup.object().shape({
 
 export function AddUser() {
     const { addUser } = useActions();
+    const {users} = useAppSelector(state => state.users);
+    const { showSuccess, showError } = useToast();
 
     return (
         <div className='add-user'>
@@ -24,17 +28,32 @@ export function AddUser() {
                 validationSchema={UserSchema}
                 onSubmit={values => {
                     const { email, name,phone } = values;
-                    const newUser = {
-                        id:uniqid(),
-                        email,
-                        name,
-                        phone
+
+                    if (email && name && phone) {
+
+                        const isUserExist = users.find(user => user.email === email);
+
+                        if (isUserExist){
+                            showError('Користувач з таким емейлом вже існує');
+                            return;
+                        }
+
+                        const newUser = {
+                            id:uniqid(),
+                            email,
+                            name,
+                            phone
+                        }
+                        addUser(newUser);
+                        showSuccess(`Користувача ${name} додано`);
+                    } else {
+                        showError('Всі поля обовязкові');
                     }
-                    addUser(newUser);
+
                 }}
             >
                 {({ errors, touched }) => (
-                    <Form className="form">
+                    <Form>
                         <div>
                             <div>
                                 {errors.email && touched.email ? (
@@ -50,7 +69,7 @@ export function AddUser() {
                             </div>
 
                             <Field
-                                className="field"
+                                
                                 name="email"
                                 type="email"
                             />
@@ -69,7 +88,7 @@ export function AddUser() {
                             </div>
 
                             <Field
-                                className="field"
+                                
                                 name="name"
                                 type="text"
                             />
@@ -88,7 +107,7 @@ export function AddUser() {
                             </div>
 
                             <Field
-                                className="field"
+                                
                                 name="phone"
                                 type="text"
                             />

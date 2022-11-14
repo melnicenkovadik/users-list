@@ -1,24 +1,26 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { authReducer } from './auth/auth.slice';
-import { friendsReducer } from './friends/friends.slice';
-import { authApi } from './auth/auth.api';
-import { friendsApi } from './friends/friends.api';
-import { chatReducer } from './chat/chat.slice';
-import { roomReducer } from './room/room.slice';
+import { usersReducer } from './users/user.slice';
+import storage from 'redux-persist/lib/storage';
+import {persistReducer, persistStore} from 'redux-persist';
+
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedUsersReducer = persistReducer(persistConfig, usersReducer)
 
 export const store = configureStore({
   reducer: {
-    [authApi.reducerPath]: authApi.reducer,
-    auth: authReducer,
-    [friendsApi.reducerPath]: authApi.reducer,
-    friends: friendsReducer,
-    chat: chatReducer,
-    room: roomReducer,
+    users: persistedUsersReducer,
   },
-  devTools: true,
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(authApi.middleware),
+  devTools: process.env.NODE_ENV !== 'production',
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
+
+export const persistor = persistStore(store)
 
 setupListeners(store.dispatch);
 
