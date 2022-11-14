@@ -1,0 +1,28 @@
+input {
+  border: 1px solid $color-white;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  font-size: 1rem;
+  font-family: $font-family;
+  color: $color-white;
+  background-color: $color-background;
+  transition: all 0.2s ease-in-out;
+
+  &:focus {
+    outline: none;
+    border: 1px solid $color-white;
+    box-shadow: 0 0 0 0.2rem $color-white;
+  }
+
+  &::placeholder {
+    color: $color-white;
+  }
+
+  &:disabled {
+    background-color: $color-background;
+    color: $color-white;
+    border: 1px solid $color-white;
+  }
+}
+
